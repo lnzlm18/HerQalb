@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HerQalb — Ebooks & Community</title>
+  <meta name="description" content="Faith-based self-development for Muslim women. Ebooks, community, and honest guidance rooted in Islamic principles." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    /* ================================================
+       BRAND PALETTE — EXACT VALUES
+    ================================================ */
+    :root {
+      --ivory:        #F2EDE8;
+      --blush:        #F2E0D8;
+      --soft-mauve:   #C4A0B5;
+      --mauve:        #9B6B8A;
+      --gold:         #C9A96E;
+      --gold-light:   #E8D5B0;
+      --plum-light:   #6B3A65;
+      --plum:         #4A2545;
+      --plum-dark:    #3D2040;
+      --charcoal:     #2C1A24;
+
+      --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      --shadow-plum:    0 4px 20px rgba(74,37,69,0.14), 0 1px 5px rgba(74,37,69,0.07);
+      --shadow-plum-lg: 0 14px 48px rgba(74,37,69,0.20), 0 4px 16px rgba(74,37,69,0.10);
+      --shadow-gold:    0 4px 24px rgba(201,169,110,0.22), 0 1px 6px rgba(201,169,110,0.10);
+
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ================================================
+       RESET
+    ================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--plum-dark);
+      background-color: var(--ivory);
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; }
+
+    /* ================================================
+       GRAIN OVERLAY
+    ================================================ */
+    .grain {
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none; opacity: 0.032;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* ================================================
+       TYPOGRAPHY TOKENS
+    ================================================ */
+    .eyebrow {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+    }
+    .gold-line {
+      display: block;
+      width: 48px;
+      height: 1.5px;
+      background: var(--gold);
+    }
+
+    /* ================================================
+       FADE-UP ANIMATION
+    ================================================ */
+    .fu {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .fu.vis { opacity: 1; transform: translateY(0); }
+    .fu[data-d="1"] { transition-delay: 0.10s; }
+    .fu[data-d="2"] { transition-delay: 0.20s; }
+    .fu[data-d="3"] { transition-delay: 0.30s; }
+    .fu[data-d="4"] { transition-delay: 0.40s; }
+    .fu[data-d="5"] { transition-delay: 0.50s; }
+    .fu[data-d="6"] { transition-delay: 0.62s; }
+
+    /* ================================================
+       NAVIGATION
+    ================================================ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 72px;
+      padding: 0 clamp(20px, 5vw, 80px);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+    }
+    .nav.stuck {
+      background-color: rgba(242,237,232,0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(74,37,69,0.09);
+    }
+    .nav-logo { height: 30px; width: auto; }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 400; letter-spacing: 0.03em;
+      color: var(--plum-dark);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--mauve); }
+    .nav-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+    .nav-cta {
+      font-weight: 500; font-size: 13px; letter-spacing: 0.05em;
+      color: var(--ivory) !important;
+      background: var(--plum);
+      padding: 10px 22px; border-radius: 2px;
+      transition: background-color 0.2s, transform 0.25s var(--ease-spring), box-shadow 0.2s;
+      box-shadow: var(--shadow-plum);
+    }
+    .nav-cta:hover { background: var(--plum-light); transform: translateY(-1px); box-shadow: var(--shadow-plum-lg); }
+    .nav-cta:active { transform: translateY(0); }
+    .nav-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .nav-burger {
+      display: none; background: none; border: none;
+      padding: 8px; color: var(--plum-dark);
+    }
+
+    /* ================================================
+       HERO
+    ================================================ */
+    .hero {
+      position: relative; min-height: 100svh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px clamp(20px, 5vw, 80px) 100px;
+      background-color: var(--ivory);
+      overflow: hidden;
+    }
+    /* Ambient radial glow */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 75% 65% at 60% 35%, rgba(242,224,216,0.65) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 45% at 15% 75%, rgba(196,160,181,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 35% 45% at 85% 80%, rgba(201,169,110,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    /* Arch SVG */
+    .hero-arch {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -44%);
+      width: min(680px, 88vw);
+      pointer-events: none; opacity: 0.065;
+    }
+    .hero-body-wrap {
+      position: relative; z-index: 1;
+      text-align: center; max-width: 860px;
+    }
+    .hero-eyebrow { margin-bottom: 32px; }
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(48px, 7.5vw, 98px);
+      line-height: 1.03;
+      letter-spacing: -0.025em;
+      color: var(--plum-dark);
+      margin-bottom: 0;
+    }
+    .hero-h1.italic {
+      font-style: italic;
+      color: var(--plum);
+      margin-bottom: 40px;
+    }
+    .hero-sub {
+      font-size: clamp(15px, 1.8vw, 17px);
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--mauve);
+      max-width: 500px;
+      margin: 0 auto 52px;
+    }
+    .hero-ctas {
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; flex-wrap: wrap;
+    }
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-body); font-weight: 500; font-size: 13px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ivory); background: var(--plum);
+      padding: 15px 36px; border-radius: 2px; border: none;
+      box-shadow: var(--shadow-plum);
+      transition: background-color 0.2s, transform 0.25s var(--ease-spring), box-shadow 0.2s;
+    }
+    .btn-primary:hover { background: var(--plum-light); transform: translateY(-2px); box-shadow: var(--shadow-plum-lg); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 400; color: var(--mauve);
+      padding: 15px 4px; border-bottom: 1px solid currentColor;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--plum); }
+    .btn-ghost:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    /* Scroll cue */
+    .scroll-cue {
+      position: absolute; bottom: 44px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--soft-mauve); opacity: 0.6;
+    }
+    .scroll-cue-line {
+      width: 1px; height: 42px;
+      background: linear-gradient(to bottom, var(--soft-mauve), transparent);
+      animation: pulse-line 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse-line {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.65); }
+    }
+
+    /* ================================================
+       MEANING SECTION
+    ================================================ */
+    .meaning {
+      padding: clamp(80px,10vw,140px) clamp(20px,5vw,80px);
+      background: var(--ivory);
+    }
+    .meaning-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(48px,7vw,100px); align-items: center;
+    }
+    .meaning-left { display: flex; flex-direction: column; gap: 24px; }
+    .arabic {
+      font-family: var(--font-display);
+      font-size: clamp(80px,13vw,148px);
+      color: var(--plum); opacity: 0.12;
+      line-height: 0.9; direction: rtl;
+      font-style: italic; user-select: none;
+    }
+    .meaning-headline {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(36px,4.5vw,56px);
+      line-height: 1.12; letter-spacing: -0.01em;
+      color: var(--plum-dark);
+    }
+    .meaning-right { display: flex; flex-direction: column; gap: 20px; }
+    .meaning-right p {
+      font-size: 16px; line-height: 1.75;
+      color: var(--plum-dark); opacity: 0.72;
+    }
+    .meaning-right p em {
+      font-family: var(--font-display);
+      font-style: italic; font-size: 1.05em; color: var(--plum);
+      opacity: 1;
+    }
+
+    /* ================================================
+       PILLARS
+    ================================================ */
+    .pillars {
+      padding: clamp(64px,8vw,100px) clamp(20px,5vw,80px);
+      background: var(--blush);
+    }
+    .pillars-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header {
+      display: flex; flex-direction: column; gap: 16px;
+      margin-bottom: clamp(44px,5vw,68px);
+    }
+    .section-h2 {
+      font-family: var(--font-display);
+      font-weight: 300; font-size: clamp(34px,4.5vw,54px);
+      line-height: 1.12; letter-spacing: -0.01em;
+      color: var(--plum-dark);
+    }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(2,1fr);
+      gap: 2px; border: 1.5px solid rgba(74,37,69,0.08);
+    }
+    .pillar-card {
+      background: rgba(242,237,232,0.55);
+      padding: clamp(28px,4vw,52px);
+      border-top: 2px solid var(--gold);
+      display: flex; flex-direction: column; gap: 16px;
+      transition: background-color 0.3s;
+    }
+    .pillar-card:hover { background: rgba(242,237,232,0.88); }
+    .pillar-card h3 {
+      font-family: var(--font-display); font-weight: 500;
+      font-size: clamp(20px,2.2vw,26px); color: var(--plum);
+      line-height: 1.2;
+    }
+    .pillar-card p { font-size: 15px; line-height: 1.7; color: var(--plum-dark); opacity: 0.68; }
+
+    /* ================================================
+       EBOOK SECTION (DARK PLUM)
+    ================================================ */
+    .ebook-section {
+      padding: clamp(80px,10vw,140px) clamp(20px,5vw,80px);
+      background: var(--plum);
+      position: relative; overflow: hidden;
+    }
+    .ebook-section::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 65% 85% at 0% 50%, rgba(107,58,101,0.45) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 50% at 100% 15%, rgba(61,32,64,0.55) 0%, transparent 55%);
+    }
+    .ebook-grid {
+      max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(48px,7vw,100px); align-items: center;
+    }
+    .ebook-text { display: flex; flex-direction: column; gap: 24px; }
+    .ebook-h2 {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: clamp(36px,4.5vw,56px); line-height: 1.1; letter-spacing: -0.01em;
+      color: var(--gold-light);
+    }
+    .ebook-h2 em { font-style: italic; color: var(--gold); }
+    .ebook-desc { font-size: clamp(15px,1.8vw,17px); line-height: 1.75; color: rgba(232,213,176,0.68); }
+    .ebook-list { display: flex; flex-direction: column; gap: 12px; }
+    .ebook-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 14px; color: var(--gold-light); opacity: 0.85;
+    }
+    .ebook-list li::before { content: '✦'; color: var(--gold); font-size: 10px; margin-top: 5px; flex-shrink: 0; }
+    .btn-gold {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--font-body); font-weight: 500; font-size: 13px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--plum-dark); background: var(--gold);
+      padding: 16px 40px; border-radius: 2px; border: none;
+      width: fit-content;
+      box-shadow: var(--shadow-gold);
+      transition: background-color 0.2s, transform 0.25s var(--ease-spring), box-shadow 0.2s;
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(201,169,110,0.36); }
+    .btn-gold:active { transform: translateY(0); }
+    .btn-gold:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+    /* Book mockup */
+    .book-wrap {
+      display: flex; justify-content: center; align-items: center;
+      perspective: 1200px;
+    }
+    .book {
+      position: relative; width: 240px; height: 340px;
+      transform: rotateY(-26deg) rotateX(3deg);
+      transform-style: preserve-3d;
+      transition: transform 0.55s var(--ease-out);
+      filter: drop-shadow(-22px 22px 44px rgba(15,5,20,0.45));
+    }
+    .book:hover { transform: rotateY(-16deg) rotateX(1.5deg); }
+    .book-spine {
+      position: absolute; left: -16px; top: 0; bottom: 0; width: 16px;
+      background: linear-gradient(to right, #180a1e, var(--plum-dark));
+      border-radius: 2px 0 0 2px;
+      transform: rotateY(-90deg); transform-origin: right;
+    }
+    .book-cover {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, var(--plum-dark) 0%, #28102e 55%, var(--charcoal) 100%);
+      border-radius: 2px 4px 4px 2px;
+      border: 1px solid rgba(201,169,110,0.22);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 28px 20px; gap: 14px; overflow: hidden;
+    }
+    .book-cover::before {
+      content: ''; position: absolute; inset: 9px;
+      border: 1px solid rgba(201,169,110,0.14); border-radius: 2px; pointer-events: none;
+    }
+    .book-cover::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 45%;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .book-ornament { color: var(--gold); font-size: 14px; letter-spacing: 10px; opacity: 0.55; position: relative; z-index: 1; }
+    .book-title {
+      font-family: var(--font-display); font-weight: 300; font-style: italic;
+      font-size: 26px; line-height: 1.18; color: var(--gold-light);
+      text-align: center; position: relative; z-index: 1;
+    }
+    .book-rule { width: 30px; height: 1px; background: var(--gold); opacity: 0.5; }
+    .book-sub {
+      font-family: var(--font-body); font-weight: 300;
+      font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--gold); opacity: 0.65; text-align: center; position: relative; z-index: 1;
+    }
+    .book-author {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: 12px; color: var(--gold-light); opacity: 0.45; position: relative; z-index: 1;
+    }
+
+    /* ================================================
+       PULL QUOTE
+    ================================================ */
+    .pull-quote {
+      padding: clamp(80px,10vw,120px) clamp(20px,5vw,80px);
+      background: var(--plum-dark);
+      position: relative; overflow: hidden;
+    }
+    .pull-quote::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 85% 85% at 50% 50%, rgba(107,58,101,0.28) 0%, transparent 70%);
+    }
+    .pull-quote-inner {
+      max-width: 800px; margin: 0 auto; position: relative; z-index: 1;
+      text-align: center; display: flex; flex-direction: column; align-items: center; gap: 28px;
+    }
+    .pq-mark {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 72px; line-height: 0.5; color: var(--gold); opacity: 0.28;
+    }
+    .pq-text {
+      font-family: var(--font-display); font-weight: 300; font-style: italic;
+      font-size: clamp(22px,3.5vw,36px); line-height: 1.48; letter-spacing: -0.01em;
+      color: var(--gold-light);
+    }
+    .pq-attr {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); opacity: 0.55;
+    }
+
+    /* ================================================
+       VALUES
+    ================================================ */
+    .values {
+      padding: clamp(80px,10vw,140px) clamp(20px,5vw,80px);
+      background: var(--ivory);
+    }
+    .values-inner { max-width: 1100px; margin: 0 auto; }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(2,1fr);
+      gap: clamp(18px,2.5vw,32px);
+    }
+    .val-card {
+      padding: clamp(28px,3.5vw,44px);
+      background: rgba(242,224,216,0.28);
+      border-radius: 2px; border-left: 2px solid var(--gold);
+      display: flex; flex-direction: column; gap: 14px;
+      transition: background-color 0.3s, transform 0.3s var(--ease-spring), box-shadow 0.3s;
+    }
+    .val-card:hover { background: rgba(242,224,216,0.62); transform: translateY(-3px); box-shadow: 0 10px 32px rgba(74,37,69,0.08); }
+    .val-card .we-are { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+    .val-card h3 { font-family: var(--font-display); font-weight: 500; font-size: clamp(19px,2.2vw,25px); color: var(--plum); line-height: 1.2; }
+    .val-card p { font-size: 15px; line-height: 1.7; color: var(--plum-dark); opacity: 0.68; }
+
+    /* ================================================
+       TESTIMONIALS
+    ================================================ */
+    .testimonials {
+      padding: clamp(64px,8vw,100px) clamp(20px,5vw,80px);
+      background: var(--blush);
+    }
+    .testimonials-inner { max-width: 1100px; margin: 0 auto; }
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(2,1fr);
+      gap: clamp(18px,2.5vw,32px);
+    }
+    .testi-card {
+      background: rgba(242,237,232,0.55);
+      border-radius: 2px; border-top: 2px solid var(--gold);
+      padding: clamp(28px,3.5vw,44px);
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .testi-text {
+      font-family: var(--font-display); font-weight: 300; font-style: italic;
+      font-size: clamp(17px,2vw,20px); line-height: 1.62; color: var(--plum-dark);
+    }
+    .testi-by { font-size: 13px; letter-spacing: 0.05em; color: var(--mauve); font-weight: 400; }
+
+    /* ================================================
+       NEWSLETTER
+    ================================================ */
+    .newsletter {
+      padding: clamp(80px,10vw,140px) clamp(20px,5vw,80px);
+      background: var(--plum);
+      position: relative; overflow: hidden;
+    }
+    .newsletter::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 65% at 25% 50%, rgba(107,58,101,0.5) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 55% at 85% 70%, rgba(61,32,64,0.4) 0%, transparent 55%);
+    }
+    .nl-arch {
+      position: absolute; right: -80px; top: 50%; transform: translateY(-50%);
+      width: 480px; opacity: 0.05; pointer-events: none;
+    }
+    .newsletter-inner {
+      max-width: 600px; margin: 0 auto; position: relative; z-index: 1;
+      text-align: center; display: flex; flex-direction: column; align-items: center; gap: 28px;
+    }
+    .newsletter-inner .section-h2 { color: var(--gold-light); }
+    .nl-desc { font-size: clamp(15px,1.8vw,17px); line-height: 1.75; color: rgba(232,213,176,0.62); }
+    .nl-form { display: flex; width: 100%; max-width: 480px; }
+    .nl-input {
+      flex: 1; font-family: var(--font-body); font-weight: 300; font-size: 15px;
+      color: var(--plum-dark); background: rgba(242,237,232,0.96);
+      border: 1.5px solid transparent; border-right: none;
+      padding: 14px 18px; border-radius: 2px 0 0 2px; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .nl-input::placeholder { color: var(--soft-mauve); opacity: 0.6; }
+    .nl-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,169,110,0.18); }
+    .nl-submit {
+      font-family: var(--font-body); font-weight: 500; font-size: 13px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--plum-dark); background: var(--gold);
+      border: none; padding: 14px 26px;
+      border-radius: 0 2px 2px 0; white-space: nowrap;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .nl-submit:hover { background: var(--gold-light); }
+    .nl-submit:active { transform: scale(0.98); }
+    .nl-submit:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+    .nl-note { font-size: 12px; color: rgba(232,213,176,0.4); letter-spacing: 0.04em; }
+    .nl-success {
+      display: none; font-family: var(--font-display); font-style: italic;
+      font-size: 20px; color: var(--gold-light); letter-spacing: 0.02em;
+    }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    .footer {
+      background: var(--charcoal);
+      padding: clamp(56px,6vw,80px) clamp(20px,5vw,80px) 36px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 48px; flex-wrap: wrap;
+      padding-bottom: 44px; margin-bottom: 28px;
+      border-bottom: 1px solid rgba(201,169,110,0.13);
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 14px; }
+    .footer-logo { height: 26px; width: auto; }
+    .footer-sub {
+      font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(232,213,176,0.38);
+    }
+    .footer-cols { display: flex; gap: clamp(28px,4vw,72px); flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-head {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
+    }
+    .footer-col a { font-size: 14px; font-weight: 300; color: rgba(232,213,176,0.5); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold-light); }
+    .footer-col a:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .footer-copy { font-size: 12px; color: rgba(232,213,176,0.28); letter-spacing: 0.04em; }
+    .footer-quote {
+      font-family: var(--font-display); font-weight: 300; font-style: italic;
+      font-size: 14px; color: rgba(201,169,110,0.38);
+    }
+
+    /* ================================================
+       RESPONSIVE
+    ================================================ */
+    @media (max-width: 860px) {
+      .meaning-grid { grid-template-columns: 1fr; gap: 36px; }
+      .ebook-grid { grid-template-columns: 1fr; }
+      .book-wrap { order: -1; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; align-items: center; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 72px; left: 0; right: 0;
+        background: rgba(242,237,232,0.97);
+        backdrop-filter: blur(14px);
+        padding: 24px 20px; gap: 20px;
+        border-bottom: 1px solid rgba(74,37,69,0.09);
+        z-index: 99;
+      }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .nl-form { flex-direction: column; }
+      .nl-input { border-radius: 2px 2px 0 0; border-right: 1.5px solid transparent; border-bottom: none; }
+      .nl-submit { border-radius: 0 0 2px 2px; padding: 14px; }
+      .footer-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Grain -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ====================== NAV ====================== -->
+<header>
+  <nav class="nav" id="nav">
+    <a href="#" aria-label="HerQalb home">
+      <img src="brand_assets/Logo.png" alt="HerQalb" class="nav-logo" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#ebook">The Ebook</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="#newsletter" class="nav-cta">Get the Ebook</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-expanded="false" aria-label="Toggle menu">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+        <line x1="0" y1="1.5" x2="22" y2="1.5" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="0" y1="8" x2="22" y2="8" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="0" y1="14.5" x2="22" y2="14.5" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<!-- ====================== HERO ====================== -->
+<section class="hero">
+  <svg class="hero-arch" viewBox="0 0 500 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M50 590 L50 235 Q50 30 250 30 Q450 30 450 235 L450 590" stroke="#4A2545" stroke-width="1.5" fill="none"/>
+    <path d="M95 590 L95 250 Q95 85 250 85 Q405 85 405 250 L405 590" stroke="#4A2545" stroke-width="0.75" fill="none" opacity="0.45"/>
+    <path d="M138 590 L138 264 Q138 138 250 138 Q362 138 362 264 L362 590" stroke="#C9A96E" stroke-width="0.5" fill="none" opacity="0.22"/>
+  </svg>
+
+  <div class="hero-body-wrap">
+    <span class="eyebrow hero-eyebrow fu" data-d="1">Ebooks & Community</span>
+    <h1 class="hero-h1 fu" data-d="2">You don't need to<br>find the right person.</h1>
+    <h1 class="hero-h1 italic fu" data-d="3">You need to become her.</h1>
+    <p class="hero-sub fu" data-d="4">
+      Faith-based guidance for Muslim women navigating love, identity, and purpose. Rooted in Islamic principles, honest about the journey.
+    </p>
+    <div class="hero-ctas fu" data-d="5">
+      <a href="#ebook" class="btn-primary">Discover the Ebook</a>
+      <a href="#about" class="btn-ghost">Our Story ↓</a>
+    </div>
+  </div>
+
+  <div class="scroll-cue fu" data-d="6" aria-hidden="true">
+    <div class="scroll-cue-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ====================== MEANING ====================== -->
+<section class="meaning" id="about">
+  <div class="meaning-grid">
+    <div class="meaning-left">
+      <div class="arabic fu" aria-hidden="true">قلب</div>
+      <span class="eyebrow fu" data-d="1">The Name</span>
+      <h2 class="meaning-headline fu" data-d="2">
+        Her Heart.<br>Her Journey.<br>Her Wholeness.
+      </h2>
+      <span class="gold-line fu" data-d="3"></span>
+    </div>
+    <div class="meaning-right">
+      <p class="fu" data-d="1">
+        <em>HerQalb</em> (قلب — Arabic for "heart") is a faith-based self-development brand for Muslim women in their 20s who are navigating love, identity, and purpose.
+      </p>
+      <p class="fu" data-d="2">
+        We exist at the intersection of Islamic principles and emotional healing — a space that has been largely underserved. Not for half-love or half-answers.
+      </p>
+      <p class="fu" data-d="3">
+        Our voice is the voice of a wise older friend. Someone who has been through it, who doesn't sugarcoat, but who holds your hand through every hard truth. Warm but not soft. Honest but never harsh.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PILLARS ====================== -->
+<section class="pillars">
+  <div class="pillars-inner">
+    <div class="section-header">
+      <span class="eyebrow fu">What we stand for</span>
+      <h2 class="section-h2 fu" data-d="1">Real guidance.<br>No filters. Rooted in faith.</h2>
+      <span class="gold-line fu" data-d="2"></span>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card fu" data-d="1">
+        <span class="eyebrow">Our Mission</span>
+        <h3>To help Muslim women love themselves the way Allah already does</h3>
+        <p>We create ebooks, content, and community experiences that reconnect women to their inherent worth — through Islamic principles, honest conversation, and practical tools for growth.</p>
+      </div>
+      <div class="pillar-card fu" data-d="2">
+        <span class="eyebrow">Our Vision</span>
+        <h3>A generation of Muslim women who never settle</h3>
+        <p>HerQalb is building a community where faith and self-worth are inseparable. Not for half-love, half-answers, or a version of themselves that feels like less than enough.</p>
+      </div>
+      <div class="pillar-card fu" data-d="3">
+        <span class="eyebrow">Our Audience</span>
+        <h3>Muslim women in their 20s feeling lost or stuck</h3>
+        <p>She's spiritually curious, emotionally intelligent, and tired of content that feels performative. She values authenticity above all else and can detect anything that isn't real from a mile away.</p>
+      </div>
+      <div class="pillar-card fu" data-d="4">
+        <span class="eyebrow">Our Promise</span>
+        <h3>Real guidance. No filters. Rooted in faith.</h3>
+        <p>We ask hard questions, sit with difficult truths, and offer a path forward that is grounded in the deen and honest about the journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== EBOOK ====================== -->
+<section class="ebook-section" id="ebook">
+  <div class="ebook-grid">
+    <div class="ebook-text">
+      <span class="eyebrow fu">Our Flagship Ebook</span>
+      <h2 class="ebook-h2 fu" data-d="1"><em>Who Moved</em><br>My Heart?</h2>
+      <span class="gold-line fu" data-d="2"></span>
+      <p class="ebook-desc fu" data-d="3">
+        A step-by-step guide to attracting the right kind of love — not by searching harder, but by coming home to yourself first.
+      </p>
+      <ul class="ebook-list fu" data-d="4">
+        <li>Rooted in Islamic principles & emotional healing</li>
+        <li>Practical journal prompts & duas throughout</li>
+        <li>Written for the woman who is done waiting to be chosen</li>
+        <li>Instant digital download · 30-day money-back guarantee</li>
+      </ul>
+      <div class="fu" data-d="5">
+        <a href="#" class="btn-gold">Get the Ebook</a>
+      </div>
+    </div>
+    <div class="book-wrap fu" data-d="2">
+      <div class="book" role="img" aria-label="Who Moved My Heart? ebook cover">
+        <div class="book-spine"></div>
+        <div class="book-cover">
+          <p class="book-ornament">✦ ✦ ✦</p>
+          <p class="book-title">Who Moved<br>My Heart?</p>
+          <div class="book-rule"></div>
+          <p class="book-sub">A guide to coming<br>home to yourself</p>
+          <p class="book-author">HerQalb</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PULL QUOTE ====================== -->
+<section class="pull-quote">
+  <div class="pull-quote-inner">
+    <span class="pq-mark fu" aria-hidden="true">"</span>
+    <blockquote class="pq-text fu" data-d="1">
+      Nothing is wrong with you. But something is missing — and it has nothing to do with how you look, how religious you are, or how much longer you have to wait.
+    </blockquote>
+    <span class="gold-line fu" data-d="2" style="margin: 0 auto;"></span>
+    <p class="pq-attr fu" data-d="3">HerQalb</p>
+  </div>
+</section>
+
+<!-- ====================== VALUES ====================== -->
+<section class="values" id="community">
+  <div class="values-inner">
+    <div class="section-header">
+      <span class="eyebrow fu">How HerQalb speaks</span>
+      <h2 class="section-h2 fu" data-d="1">Warm but not soft.<br>Honest but never harsh.</h2>
+      <span class="gold-line fu" data-d="2"></span>
+    </div>
+    <div class="values-grid">
+      <div class="val-card fu" data-d="1">
+        <span class="we-are">We Are</span>
+        <h3>Intimate & Direct</h3>
+        <p>We speak directly to one woman, not a crowd. "I see you" — not "Muslim women often feel…" You are never a demographic to us.</p>
+      </div>
+      <div class="val-card fu" data-d="2">
+        <span class="we-are">We Are</span>
+        <h3>Faith-Rooted, Not Preachy</h3>
+        <p>Quranic verses and hadith are woven in naturally — as comfort and context, never as judgement. We never make you feel like a bad Muslim.</p>
+      </div>
+      <div class="val-card fu" data-d="3">
+        <span class="we-are">We Are</span>
+        <h3>Emotionally Honest</h3>
+        <p>We name the ache, the confusion, the quiet despair before we offer any answers. You need to feel seen before you'll feel helped.</p>
+      </div>
+      <div class="val-card fu" data-d="4">
+        <span class="we-are">We Are</span>
+        <h3>Grounded & Practical</h3>
+        <p>Journal prompts, duas, and concrete next steps. Beautiful quotes alone aren't enough. Hope without direction isn't enough.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== TESTIMONIALS ====================== -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-header">
+      <span class="eyebrow fu">Stories of transformation</span>
+      <h2 class="section-h2 fu" data-d="1">I see you.<br>She found herself.</h2>
+      <span class="gold-line fu" data-d="2"></span>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fu" data-d="1">
+        <p class="testi-text">"I finally stopped waiting to be chosen. This guide helped me realize I had been choosing myself all along — I just didn't believe it yet."</p>
+        <span class="testi-by">— Fatima, 24</span>
+      </div>
+      <div class="testi-card fu" data-d="2">
+        <p class="testi-text">"HerQalb felt like sitting with a friend who actually gets it. Not a lecture. Not toxic positivity. Just honest, faith-grounded truth."</p>
+        <span class="testi-by">— Amina, 27</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== NEWSLETTER ====================== -->
+<section class="newsletter" id="newsletter">
+  <svg class="nl-arch" viewBox="0 0 500 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M50 590 L50 235 Q50 30 250 30 Q450 30 450 235 L450 590" stroke="#E8D5B0" stroke-width="1.5" fill="none"/>
+    <path d="M95 590 L95 250 Q95 85 250 85 Q405 85 405 250 L405 590" stroke="#E8D5B0" stroke-width="0.75" fill="none" opacity="0.5"/>
+  </svg>
+  <div class="newsletter-inner">
+    <span class="eyebrow fu">Join the community</span>
+    <h2 class="section-h2 fu" data-d="1">You don't have to figure this out alone.</h2>
+    <span class="gold-line fu" data-d="2" style="margin: 0 auto;"></span>
+    <p class="nl-desc fu" data-d="3">
+      Honest letters for Muslim women. No fluff, no performance — just real guidance, delivered with care. Straight to your inbox.
+    </p>
+    <form class="nl-form fu" data-d="4" id="nlForm">
+      <input type="email" class="nl-input" placeholder="Your email address" required aria-label="Email address" />
+      <button type="submit" class="nl-submit">Join Us</button>
+    </form>
+    <p class="nl-note fu" data-d="5">No spam. Unsubscribe anytime. We only send what matters.</p>
+    <p class="nl-success" id="nlSuccess">Bismillah — welcome to HerQalb. ✦</p>
+  </div>
+</section>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logos/herqalb-logo-04-gold-on-charcoal.png" alt="HerQalb" class="footer-logo" />
+        <span class="footer-sub">Ebooks & Community</span>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="footer-col-head">Navigate</p>
+          <a href="#about">About</a>
+          <a href="#ebook">The Ebook</a>
+          <a href="#community">Community</a>
+          <a href="#newsletter">Join Us</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Legal</p>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Refund Policy</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Follow</p>
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© <span id="yr"></span> HerQalb. All rights reserved.</p>
+      <p class="footer-quote">"Your worth was decided before you were born."</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('stuck', window.scrollY > 40);
+  }, { passive: true });
+  if (window.scrollY > 40) nav.classList.add('stuck');
+
+  // Mobile nav
+  const burger = document.getElementById('navBurger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Fade-up: hero elements fire on load
+  setTimeout(() => {
+    document.querySelectorAll('.hero .fu').forEach(el => el.classList.add('vis'));
+  }, 80);
+
+  // Fade-up: rest via IntersectionObserver
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('.fu:not(.hero .fu)').forEach(el => io.observe(el));
+
+  // Newsletter form
+  document.getElementById('nlForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.querySelectorAll('.nl-note').forEach(el => el.style.display = 'none');
+    const s = document.getElementById('nlSuccess');
+    s.style.display = 'block';
+  });
+</script>
+</body>
+</html>

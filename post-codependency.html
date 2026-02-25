@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reclaim Your Worth: An Islamic Guide to Overcoming Codependency — HerQalb</title>
+  <meta name="description" content="Have you ever felt like you're pouring from an empty cup? Learn how to break free from codependency through Islamic principles and self-love." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ivory: #F2EDE8; --blush: #F2E0D8; --soft-mauve: #C4A0B5;
+      --mauve: #9B6B8A; --gold: #C9A96E; --gold-light: #E8D5B0;
+      --plum-light: #6B3A65; --plum: #4A2545; --plum-dark: #3D2040;
+      --charcoal: #2C1A24;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --shadow-plum: 0 4px 20px rgba(74,37,69,0.14), 0 1px 5px rgba(74,37,69,0.07);
+      --shadow-plum-lg: 0 14px 48px rgba(74,37,69,0.20), 0 4px 16px rgba(74,37,69,0.10);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-weight: 300; font-size: 16px; line-height: 1.7; color: var(--plum-dark); background-color: var(--ivory); overflow-x: hidden; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; }
+    .grain { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.032; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 180px 180px; }
+    .eyebrow { font-family: var(--font-body); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); display: block; }
+    .gold-line { display: block; width: 48px; height: 1.5px; background: var(--gold); }
+    .fu { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out); }
+    .fu.vis { opacity: 1; transform: translateY(0); }
+    .fu[data-d="1"] { transition-delay: 0.10s; }
+    .fu[data-d="2"] { transition-delay: 0.20s; }
+    .fu[data-d="3"] { transition-delay: 0.30s; }
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; padding: 0 clamp(20px, 5vw, 80px); display: flex; align-items: center; justify-content: space-between; background-color: rgba(242,237,232,0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(74,37,69,0.09); }
+    .nav-logo { height: 30px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: 14px; font-weight: 400; letter-spacing: 0.03em; color: var(--plum-dark); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--mauve); }
+    .nav-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+    .nav-cta { font-weight: 500; font-size: 13px; letter-spacing: 0.05em; color: var(--ivory) !important; background: var(--plum); padding: 10px 22px; border-radius: 2px; transition: background-color 0.2s, transform 0.25s var(--ease-spring), box-shadow 0.2s; box-shadow: var(--shadow-plum); }
+    .nav-cta:hover { background: var(--plum-light); transform: translateY(-1px); box-shadow: var(--shadow-plum-lg); }
+    .nav-cta:active { transform: translateY(0); }
+    .nav-burger { display: none; background: none; border: none; padding: 8px; color: var(--plum-dark); }
+    /* POST HERO */
+    .post-hero { padding: 148px clamp(20px, 5vw, 80px) 64px; background: var(--ivory); position: relative; overflow: hidden; }
+    .post-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 70% 20%, rgba(242,224,216,0.55) 0%, transparent 60%), radial-gradient(ellipse 40% 50% at 10% 80%, rgba(196,160,181,0.10) 0%, transparent 55%); pointer-events: none; }
+    .post-hero-inner { max-width: 720px; position: relative; z-index: 1; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; letter-spacing: 0.03em; color: var(--mauve); margin-bottom: 32px; transition: color 0.2s, gap 0.25s var(--ease-spring); }
+    .back-link:hover { color: var(--plum); gap: 2px; }
+    .back-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    .blog-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .blog-cat { font-family: var(--font-body); font-weight: 500; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+    .blog-date { font-size: 12px; color: var(--soft-mauve); opacity: 0.7; letter-spacing: 0.04em; }
+    .post-title { font-family: var(--font-display); font-weight: 300; font-size: clamp(36px, 5.5vw, 66px); line-height: 1.06; letter-spacing: -0.02em; color: var(--plum-dark); margin-bottom: 24px; }
+    .post-title em { font-style: italic; color: var(--plum); }
+    /* POST BODY */
+    .post-section { padding: clamp(48px, 6vw, 80px) clamp(20px, 5vw, 80px) clamp(80px, 10vw, 120px); background: var(--ivory); border-top: 1px solid rgba(74,37,69,0.06); }
+    .post-inner { max-width: 680px; margin: 0 auto; }
+    .post-inner p { font-size: clamp(15px, 1.6vw, 17px); line-height: 1.82; color: var(--plum-dark); margin-bottom: 24px; }
+    .post-inner h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 2.5vw, 30px); line-height: 1.2; letter-spacing: -0.01em; color: var(--plum-dark); margin: 52px 0 20px; }
+    .post-inner h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(18px, 2vw, 24px); line-height: 1.25; letter-spacing: -0.005em; color: var(--plum); margin: 36px 0 16px; font-style: italic; }
+    .post-inner ul { margin: 0 0 24px 0; padding-left: 0; }
+    .post-inner ul li { font-size: clamp(15px, 1.6vw, 17px); line-height: 1.75; color: var(--plum-dark); padding-left: 22px; position: relative; margin-bottom: 10px; }
+    .post-inner ul li::before { content: '✦'; position: absolute; left: 0; color: var(--gold); font-size: 9px; top: 7px; }
+    .post-quote { border-left: 2px solid var(--gold); padding: 20px 24px; margin: 32px 0; background: rgba(201,169,110,0.06); border-radius: 0 2px 2px 0; }
+    .post-quote p { font-family: var(--font-display); font-style: italic; font-size: clamp(16px, 1.8vw, 19px); line-height: 1.65; color: var(--plum); margin: 0 0 8px !important; }
+    .post-quote cite { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-style: normal; }
+    .post-divider { width: 100%; height: 1px; background: rgba(74,37,69,0.07); margin: 40px 0; }
+    .post-closing { background: rgba(242,224,216,0.45); border-radius: 2px; padding: 36px; margin-top: 56px; }
+    .post-closing p { font-family: var(--font-display); font-style: italic; font-size: clamp(17px, 1.9vw, 21px); line-height: 1.7; color: var(--plum-dark); margin: 0 !important; }
+    .post-sign { font-family: var(--font-body); font-style: normal !important; font-size: 14px !important; font-weight: 500; color: var(--gold) !important; margin-top: 16px !important; display: block; }
+    .post-back { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 400; color: var(--mauve); border-bottom: 1px solid currentColor; padding-bottom: 2px; margin-top: 56px; transition: color 0.2s, gap 0.25s var(--ease-spring); }
+    .post-back:hover { color: var(--plum); gap: 12px; }
+    /* NEWSLETTER */
+    .blog-nl { margin-top: clamp(64px, 8vw, 96px); padding: clamp(48px, 5vw, 72px) clamp(32px, 5vw, 80px); background: var(--plum-dark); border-radius: 2px; position: relative; overflow: hidden; text-align: center; }
+    .blog-nl::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 80% 65% at 25% 50%, rgba(107,58,101,0.5) 0%, transparent 60%), radial-gradient(ellipse 55% 55% at 85% 70%, rgba(61,32,64,0.4) 0%, transparent 55%); }
+    .blog-nl-inner { max-width: 500px; margin: 0 auto; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .blog-nl-h { font-family: var(--font-display); font-weight: 300; font-size: clamp(24px, 3vw, 36px); line-height: 1.18; letter-spacing: -0.01em; color: var(--gold-light); }
+    .blog-nl-sub { font-size: 15px; line-height: 1.75; color: rgba(232,213,176,0.55); }
+    .nl-form { display: flex; width: 100%; max-width: 440px; }
+    .nl-input { flex: 1; font-family: var(--font-body); font-weight: 300; font-size: 15px; color: var(--plum-dark); background: rgba(242,237,232,0.96); border: 1.5px solid transparent; border-right: none; padding: 14px 18px; border-radius: 2px 0 0 2px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .nl-input::placeholder { color: var(--soft-mauve); opacity: 0.6; }
+    .nl-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,169,110,0.18); }
+    .nl-submit { font-family: var(--font-body); font-weight: 500; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--plum-dark); background: var(--gold); border: none; padding: 14px 26px; border-radius: 0 2px 2px 0; white-space: nowrap; transition: background-color 0.2s, transform 0.2s; }
+    .nl-submit:hover { background: var(--gold-light); }
+    .nl-submit:active { transform: scale(0.98); }
+    .nl-note { font-size: 11px; color: rgba(232,213,176,0.35); letter-spacing: 0.04em; }
+    .nl-success { display: none; font-family: var(--font-display); font-style: italic; font-size: 20px; color: var(--gold-light); letter-spacing: 0.02em; }
+    /* FOOTER */
+    .footer { background: var(--charcoal); padding: clamp(56px,6vw,80px) clamp(20px,5vw,80px) 36px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 48px; flex-wrap: wrap; padding-bottom: 44px; margin-bottom: 28px; border-bottom: 1px solid rgba(201,169,110,0.13); }
+    .footer-brand { display: flex; flex-direction: column; gap: 14px; }
+    .footer-logo { height: 26px; width: auto; }
+    .footer-sub { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,213,176,0.38); }
+    .footer-cols { display: flex; gap: clamp(28px,4vw,72px); flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-head { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .footer-col a { font-size: 14px; font-weight: 300; color: rgba(232,213,176,0.5); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold-light); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .footer-copy { font-size: 12px; color: rgba(232,213,176,0.28); letter-spacing: 0.04em; }
+    .footer-quote { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: 14px; color: rgba(201,169,110,0.38); }
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; align-items: center; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: rgba(242,237,232,0.97); backdrop-filter: blur(14px); padding: 24px 20px; gap: 20px; border-bottom: 1px solid rgba(74,37,69,0.09); z-index: 99; }
+      .nl-form { flex-direction: column; }
+      .nl-input { border-radius: 2px 2px 0 0; border-right: 1.5px solid transparent; border-bottom: none; }
+      .nl-submit { border-radius: 0 0 2px 2px; padding: 14px; }
+      .footer-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <nav class="nav" id="nav">
+    <a href="index.html" aria-label="HerQalb home"><img src="brand_assets/Logo.png" alt="HerQalb" class="nav-logo" /></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#empathy">The Book</a></li>
+      <li><a href="index.html#whats-inside">What's Inside</a></li>
+      <li><a href="index.html#author">Meet Nour</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="index.html#ebook" class="nav-cta">Get the Ebook — $17</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-expanded="false" aria-label="Toggle menu">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true"><line x1="0" y1="1.5" x2="22" y2="1.5" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="8" x2="22" y2="8" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="14.5" x2="22" y2="14.5" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </nav>
+</header>
+
+<section class="post-hero">
+  <div class="post-hero-inner">
+    <a href="blog.html" class="back-link fu">← Back to all posts</a>
+    <div class="blog-meta fu" data-d="1">
+      <span class="blog-cat">Self-Worth</span>
+      <span class="blog-date">February 18, 2026</span>
+    </div>
+    <h1 class="post-title fu" data-d="2">Reclaim Your Worth:<br><em>An Islamic Guide to Overcoming Codependency</em></h1>
+    <span class="gold-line fu" data-d="3"></span>
+  </div>
+</section>
+
+<section class="post-section">
+  <div class="post-inner">
+
+    <p>Have you ever felt like you're pouring from an empty cup? Giving everything you have to someone else, only to feel invisible in return? Sister, it's time to reclaim your worth. I see you. You've been giving so much, hoping it will bring peace, only to feel emptier than before.</p>
+    <p>But I promise you this: You were not created to live like this. Allah (SWT) didn't place you in this world to sacrifice your identity for someone else. He created you with a purpose far greater than managing someone else's chaos. Let's explore how codependency forms, the toll it takes, and how you can break free to reclaim your worth through self-love and faith.</p>
+
+    <div class="post-divider"></div>
+
+    <h2>What is Codependency?</h2>
+    <p>Codependency happens when your sense of self-worth becomes tied to your role in a relationship. It feels like:</p>
+    <ul>
+      <li>Constantly prioritizing someone else's needs over your own.</li>
+      <li>Over-managing their problems or shortcomings.</li>
+      <li>Feeling like your happiness depends entirely on their approval or well-being.</li>
+    </ul>
+    <p>It's important to understand that this isn't love — it's a pattern of behavior stemming from unresolved wounds. And while it may feel noble or selfless, Islam teaches us that true love starts with a healthy relationship with ourselves and Allah (SWT).</p>
+    <div class="post-quote">
+      <p>"Indeed, Allah will not change the condition of a people until they change what is in themselves."</p>
+      <cite>Surah Ar-Ra'd: 11</cite>
+    </div>
+    <p>This ayah is a reminder that transformation begins within. If you're stuck in a cycle of codependency, it's time to reflect, realign, and take the first steps toward healing.</p>
+
+    <div class="post-divider"></div>
+
+    <h2>Where Does Codependency Come From?</h2>
+    <p>For many of us, codependency starts in childhood. Maybe your parents were emotionally unavailable or too busy to validate your feelings. Perhaps love felt conditional — something you had to work for by being perfect, helpful, or invisible.</p>
+    <p>As you grew up, this pattern of seeking validation and safety through others followed you into your relationships. You learned to overgive, overcompensate, and overextend, hoping it would earn the love or security you craved. But this only left you feeling drained and unseen.</p>
+
+    <div class="post-divider"></div>
+
+    <h2>The Toll of Codependency</h2>
+    <p>When we give everything to someone else, we lose sight of ourselves. Over time, this leads to:</p>
+    <ul>
+      <li>Constant stress and anxiety.</li>
+      <li>A lack of joy or fulfillment.</li>
+      <li>Strained relationships with others and even Allah (SWT).</li>
+    </ul>
+    <p>Our bodies and hearts are amanahs from Allah (SWT). Prolonged stress from codependency takes a toll on our physical and emotional well-being. Letting go of this unhealthy cycle isn't just about emotional healing — it's about honoring the trust Allah placed in you to care for yourself.</p>
+
+    <div class="post-divider"></div>
+
+    <h2>Healing Through Islam: Reclaiming Your Worth</h2>
+    <p>Islam offers a beautiful framework for self-love and healing, rooted in our connection with Allah (SWT). Here's how you can begin to break free:</p>
+
+    <h3>1. Know Your True Value</h3>
+    <p>Your worth isn't tied to what you do for others; it's in your connection to Allah (SWT). You are valuable simply because He created you. Reflect on this hadith:</p>
+    <div class="post-quote">
+      <p>"Indeed, Allah does not look at your appearance or wealth, but rather He looks at your hearts and your deeds."</p>
+      <cite>Sahih Muslim</cite>
+    </div>
+    <p>This reminder helps us shift our focus from seeking validation from others to seeking closeness to our Creator.</p>
+
+    <h3>2. Let Go of Control</h3>
+    <p>Codependency often involves trying to control others to feel secure. But Allah (SWT) is Al-Wakeel, the Ultimate Disposer of Affairs. True peace comes from trusting Him:</p>
+    <div class="post-quote">
+      <p>"And whoever relies upon Allah — then He is sufficient for him."</p>
+      <cite>Surah At-Talaq: 3</cite>
+    </div>
+    <p>Letting go of control is scary, but it's also freeing. Trust that Allah's plan for you is better than anything you could try to orchestrate.</p>
+
+    <h3>3. Turn the Spotlight to Yourself</h3>
+    <p>Take a moment to ask yourself: <em>Who am I outside of this relationship?</em> Islam encourages us to nurture ourselves. The Prophet Muhammad (peace be upon him) said:</p>
+    <div class="post-quote">
+      <p>"Your body has a right over you."</p>
+      <cite>Sahih Bukhari</cite>
+    </div>
+    <p>Self-care isn't selfish; it's essential. Take time to rediscover your passions, focus on your health, and reconnect with the things that bring you joy.</p>
+
+    <h3>4. Reconnect with Your Inner Child</h3>
+    <p>Healing often involves addressing the unmet needs of your past. Imagine sitting with your younger self, who felt unseen or unworthy. Comfort her and remind her that she is loved — not for what she does but for who she is.</p>
+    <p>This process of reparenting yourself aligns with the Islamic concept of <em>tazkiyah</em> — purifying your heart and soul.</p>
+
+    <h3>5. Make Dua and Seek Guidance</h3>
+    <p>Turn to Allah (SWT) in dua and ask Him to heal your heart:</p>
+    <ul>
+      <li><em>"Ya Allah, guide me to love myself in a way that pleases You."</em></li>
+      <li><em>"Ya Allah, replace my pain with peace and my struggles with ease."</em></li>
+    </ul>
+    <p>Seeking His help is the most powerful tool in your healing journey.</p>
+
+    <div class="post-divider"></div>
+
+    <h2>From Codependency to Contentment</h2>
+    <p>Imagine waking up every day knowing your worth isn't tied to anyone else's approval. You feel joy, peace, and a deep connection to Allah (SWT).</p>
+    <p>Breaking free from codependency takes courage, but it's worth every step. You are stronger than you think, and Allah is with you through it all.</p>
+
+    <div class="post-divider"></div>
+
+    <h2>Take Your First Step</h2>
+    <p>Today, I invite you to take a small but powerful step toward healing. Reflect on these questions:</p>
+    <ul>
+      <li>What brings me joy?</li>
+      <li>How can I honor myself while staying true to my faith?</li>
+      <li>What boundaries can I set to protect my peace?</li>
+    </ul>
+    <p>Write your answers in a journal or share them with our HerQalb community. Let's walk this journey together, insha'Allah.</p>
+
+    <div class="post-closing">
+      <p>Sister, you are worthy. You are loved. And you are enough — just as you are.</p>
+      <span class="post-sign">With love and duas, Leen</span>
+    </div>
+
+    <a href="blog.html" class="post-back">← Back to all posts</a>
+
+    <div class="blog-nl fu" style="margin-top: 64px;">
+      <div class="blog-nl-inner">
+        <span class="eyebrow" style="color: var(--gold);">Stay connected</span>
+        <h2 class="blog-nl-h">New pieces, straight<br>to your inbox.</h2>
+        <p class="blog-nl-sub">No fluff. No schedule. Just honest writing when it's ready.</p>
+        <form class="nl-form" id="nlForm">
+          <input type="email" class="nl-input" placeholder="Your email address" required aria-label="Email address" />
+          <button type="submit" class="nl-submit">Join</button>
+        </form>
+        <p class="nl-note">No spam. Unsubscribe anytime.</p>
+        <p class="nl-success" id="nlSuccess">Bismillah — welcome to HerQalb. ✦</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logos/herqalb-logo-04-gold-on-charcoal.png" alt="HerQalb" class="footer-logo" />
+        <span class="footer-sub">Ebooks &amp; Community for Muslim Women</span>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="footer-col-head">Navigate</p>
+          <a href="index.html#empathy">The Book</a>
+          <a href="index.html#whats-inside">What's Inside</a>
+          <a href="index.html#ebook">Get the Ebook</a>
+          <a href="index.html#author">Meet Nour</a>
+          <a href="blog.html">Blog</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Legal</p>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Refund Policy</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Follow</p>
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© <span id="yr"></span> HerQalb. All rights reserved.</p>
+      <p class="footer-quote">"Your worth was decided before you were born."</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const burger = document.getElementById('navBurger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => { const open = navLinks.classList.toggle('open'); burger.setAttribute('aria-expanded', String(open)); });
+  navLinks.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { navLinks.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }); });
+  setTimeout(() => { document.querySelectorAll('.post-hero .fu').forEach(el => el.classList.add('vis')); }, 80);
+  const io = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } }); }, { threshold: 0.10 });
+  document.querySelectorAll('.fu:not(.post-hero .fu)').forEach(el => io.observe(el));
+  document.getElementById('nlForm').addEventListener('submit', function(e) { e.preventDefault(); this.style.display = 'none'; document.querySelectorAll('.nl-note').forEach(el => el.style.display = 'none'); document.getElementById('nlSuccess').style.display = 'block'; });
+</script>
+</body>
+</html>

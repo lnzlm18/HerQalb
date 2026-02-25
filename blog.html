@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — HerQalb</title>
+  <meta name="description" content="Honest writing on faith, self-worth, love, and becoming — for Muslim women. From the heart of HerQalb." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    /* ================================================
+       BRAND PALETTE — EXACT VALUES
+    ================================================ */
+    :root {
+      --ivory:        #F2EDE8;
+      --blush:        #F2E0D8;
+      --soft-mauve:   #C4A0B5;
+      --mauve:        #9B6B8A;
+      --gold:         #C9A96E;
+      --gold-light:   #E8D5B0;
+      --plum-light:   #6B3A65;
+      --plum:         #4A2545;
+      --plum-dark:    #3D2040;
+      --charcoal:     #2C1A24;
+
+      --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      --shadow-plum:    0 4px 20px rgba(74,37,69,0.14), 0 1px 5px rgba(74,37,69,0.07);
+      --shadow-plum-lg: 0 14px 48px rgba(74,37,69,0.20), 0 4px 16px rgba(74,37,69,0.10);
+      --shadow-gold:    0 4px 24px rgba(201,169,110,0.22), 0 1px 6px rgba(201,169,110,0.10);
+
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ================================================
+       RESET
+    ================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--plum-dark);
+      background-color: var(--ivory);
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; }
+
+    /* ================================================
+       GRAIN OVERLAY
+    ================================================ */
+    .grain {
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none; opacity: 0.032;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* ================================================
+       TYPOGRAPHY TOKENS
+    ================================================ */
+    .eyebrow {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+    }
+    .gold-line {
+      display: block;
+      width: 48px;
+      height: 1.5px;
+      background: var(--gold);
+    }
+
+    /* ================================================
+       FADE-UP ANIMATION
+    ================================================ */
+    .fu {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .fu.vis { opacity: 1; transform: translateY(0); }
+    .fu[data-d="1"] { transition-delay: 0.10s; }
+    .fu[data-d="2"] { transition-delay: 0.20s; }
+    .fu[data-d="3"] { transition-delay: 0.30s; }
+    .fu[data-d="4"] { transition-delay: 0.40s; }
+    .fu[data-d="5"] { transition-delay: 0.50s; }
+    .fu[data-d="6"] { transition-delay: 0.62s; }
+
+    /* ================================================
+       NAVIGATION
+    ================================================ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 72px;
+      padding: 0 clamp(20px, 5vw, 80px);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+      background-color: rgba(242,237,232,0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(74,37,69,0.09);
+    }
+    .nav-logo { height: 30px; width: auto; }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 400; letter-spacing: 0.03em;
+      color: var(--plum-dark);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--mauve); }
+    .nav-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+    .nav-links a.active {
+      color: var(--mauve);
+      border-bottom: 1.5px solid var(--gold);
+      padding-bottom: 1px;
+    }
+    .nav-cta {
+      font-weight: 500; font-size: 13px; letter-spacing: 0.05em;
+      color: var(--ivory) !important;
+      background: var(--plum);
+      padding: 10px 22px; border-radius: 2px;
+      transition: background-color 0.2s, transform 0.25s var(--ease-spring), box-shadow 0.2s;
+      box-shadow: var(--shadow-plum);
+    }
+    .nav-cta:hover { background: var(--plum-light); transform: translateY(-1px); box-shadow: var(--shadow-plum-lg); }
+    .nav-cta:active { transform: translateY(0); }
+    .nav-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .nav-burger {
+      display: none; background: none; border: none;
+      padding: 8px; color: var(--plum-dark);
+    }
+
+    /* ================================================
+       BLOG HERO
+    ================================================ */
+    .blog-hero {
+      padding: 148px clamp(20px, 5vw, 80px) 80px;
+      background: var(--ivory);
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 70% 20%, rgba(242,224,216,0.55) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(196,160,181,0.10) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .blog-hero-inner {
+      max-width: 720px;
+      position: relative; z-index: 1;
+    }
+    .blog-hero-h1 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(48px, 6.5vw, 82px);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      color: var(--plum-dark);
+      margin: 20px 0 24px;
+    }
+    .blog-hero-h1 em {
+      font-style: italic;
+      color: var(--plum);
+    }
+    .blog-hero-sub {
+      font-size: clamp(15px, 1.8vw, 17px);
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--mauve);
+      max-width: 480px;
+    }
+
+    /* ================================================
+       BLOG GRID
+    ================================================ */
+    .blog-section {
+      padding: clamp(56px, 7vw, 96px) clamp(20px, 5vw, 80px) clamp(80px, 10vw, 140px);
+      background: var(--ivory);
+      border-top: 1px solid rgba(74,37,69,0.06);
+    }
+    .blog-inner { max-width: 1100px; margin: 0 auto; }
+
+    /* Featured post — full width */
+    .blog-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(36px, 5vw, 72px);
+      align-items: center;
+      padding-bottom: clamp(52px, 6vw, 80px);
+      margin-bottom: clamp(52px, 6vw, 80px);
+      border-bottom: 1px solid rgba(74,37,69,0.07);
+    }
+    .blog-featured-img {
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .blog-featured-img img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+    }
+    .blog-featured-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(74,37,69,0.42) 100%);
+      mix-blend-mode: multiply;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .blog-featured-text {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .blog-cat {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .blog-date {
+      font-size: 12px;
+      color: var(--soft-mauve);
+      opacity: 0.7;
+      letter-spacing: 0.04em;
+    }
+    .blog-featured-title {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--plum-dark);
+    }
+    .blog-featured-title em {
+      font-style: italic;
+      color: var(--plum);
+    }
+    .blog-featured-excerpt {
+      font-size: clamp(14px, 1.6vw, 16px);
+      line-height: 1.78;
+      color: var(--plum-dark);
+      opacity: 0.65;
+    }
+    .blog-read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--mauve);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+      width: fit-content;
+      transition: color 0.2s, gap 0.25s var(--ease-spring);
+    }
+    .blog-read-more:hover { color: var(--plum); gap: 12px; }
+    .blog-read-more:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+    /* Grid of regular posts */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.5vw, 32px);
+    }
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1.5px solid var(--gold);
+      transition: transform 0.3s var(--ease-spring);
+    }
+    .blog-card:hover { transform: translateY(-4px); }
+    .blog-card-img {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 2px 2px;
+    }
+    .blog-card-img img {
+      width: 100%;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s var(--ease-out);
+    }
+    .blog-card:hover .blog-card-img img { transform: scale(1.04); }
+    .blog-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(74,37,69,0.35) 100%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+    .blog-card-body {
+      padding: clamp(20px, 2.2vw, 28px) 0 clamp(24px, 2.5vw, 32px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+    .blog-card-title {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.22;
+      letter-spacing: -0.01em;
+      color: var(--plum-dark);
+    }
+    .blog-card-title em { font-style: italic; color: var(--plum); }
+    .blog-card-excerpt {
+      font-size: 13.5px;
+      line-height: 1.72;
+      color: var(--plum-dark);
+      opacity: 0.58;
+    }
+    .blog-card-footer {
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    /* ================================================
+       NEWSLETTER (INLINE STRIP)
+    ================================================ */
+    .blog-nl {
+      margin-top: clamp(64px, 8vw, 96px);
+      padding: clamp(48px, 5vw, 72px) clamp(32px, 5vw, 80px);
+      background: var(--plum-dark);
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .blog-nl::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 65% at 25% 50%, rgba(107,58,101,0.5) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 55% at 85% 70%, rgba(61,32,64,0.4) 0%, transparent 55%);
+    }
+    .blog-nl-inner {
+      max-width: 500px; margin: 0 auto; position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
+    }
+    .blog-nl-h {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      color: var(--gold-light);
+    }
+    .blog-nl-sub {
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(232,213,176,0.55);
+    }
+    .nl-form { display: flex; width: 100%; max-width: 440px; }
+    .nl-input {
+      flex: 1; font-family: var(--font-body); font-weight: 300; font-size: 15px;
+      color: var(--plum-dark); background: rgba(242,237,232,0.96);
+      border: 1.5px solid transparent; border-right: none;
+      padding: 14px 18px; border-radius: 2px 0 0 2px; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .nl-input::placeholder { color: var(--soft-mauve); opacity: 0.6; }
+    .nl-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,169,110,0.18); }
+    .nl-submit {
+      font-family: var(--font-body); font-weight: 500; font-size: 13px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--plum-dark); background: var(--gold);
+      border: none; padding: 14px 26px;
+      border-radius: 0 2px 2px 0; white-space: nowrap;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .nl-submit:hover { background: var(--gold-light); }
+    .nl-submit:active { transform: scale(0.98); }
+    .nl-submit:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+    .nl-note { font-size: 11px; color: rgba(232,213,176,0.35); letter-spacing: 0.04em; }
+    .nl-success {
+      display: none; font-family: var(--font-display); font-style: italic;
+      font-size: 20px; color: var(--gold-light); letter-spacing: 0.02em;
+    }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    .footer {
+      background: var(--charcoal);
+      padding: clamp(56px,6vw,80px) clamp(20px,5vw,80px) 36px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 48px; flex-wrap: wrap;
+      padding-bottom: 44px; margin-bottom: 28px;
+      border-bottom: 1px solid rgba(201,169,110,0.13);
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 14px; }
+    .footer-logo { height: 26px; width: auto; }
+    .footer-sub {
+      font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(232,213,176,0.38);
+    }
+    .footer-cols { display: flex; gap: clamp(28px,4vw,72px); flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-head {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
+    }
+    .footer-col a { font-size: 14px; font-weight: 300; color: rgba(232,213,176,0.5); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold-light); }
+    .footer-col a:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .footer-copy { font-size: 12px; color: rgba(232,213,176,0.28); letter-spacing: 0.04em; }
+    .footer-quote {
+      font-family: var(--font-display); font-weight: 300; font-style: italic;
+      font-size: 14px; color: rgba(201,169,110,0.38);
+    }
+
+    /* ================================================
+       RESPONSIVE
+    ================================================ */
+    @media (max-width: 860px) {
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; align-items: center; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 72px; left: 0; right: 0;
+        background: rgba(242,237,232,0.97);
+        backdrop-filter: blur(14px);
+        padding: 24px 20px; gap: 20px;
+        border-bottom: 1px solid rgba(74,37,69,0.09);
+        z-index: 99;
+      }
+      .blog-grid { grid-template-columns: 1fr; }
+      .nl-form { flex-direction: column; }
+      .nl-input { border-radius: 2px 2px 0 0; border-right: 1.5px solid transparent; border-bottom: none; }
+      .nl-submit { border-radius: 0 0 2px 2px; padding: 14px; }
+      .footer-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Grain -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ====================== NAV ====================== -->
+<header>
+  <nav class="nav" id="nav">
+    <a href="index.html" aria-label="HerQalb home">
+      <img src="brand_assets/Logo.png" alt="HerQalb" class="nav-logo" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#empathy">The Book</a></li>
+      <li><a href="index.html#whats-inside">What's Inside</a></li>
+      <li><a href="index.html#author">Meet Nour</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="index.html#ebook" class="nav-cta">Get the Ebook — $17</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-expanded="false" aria-label="Toggle menu">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+        <line x1="0" y1="1.5" x2="22" y2="1.5" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="0" y1="8" x2="22" y2="8" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="0" y1="14.5" x2="22" y2="14.5" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<!-- ====================== BLOG HERO ====================== -->
+<section class="blog-hero">
+  <div class="blog-hero-inner">
+    <span class="eyebrow fu">Words from HerQalb</span>
+    <h1 class="blog-hero-h1 fu" data-d="1">
+      Honest writing<br>for the <em>woman becoming.</em>
+    </h1>
+    <span class="gold-line fu" data-d="2"></span>
+    <p class="blog-hero-sub fu" data-d="3">
+      On faith, self-worth, love, and returning to yourself — written with care, not performance.
+    </p>
+  </div>
+</section>
+
+<!-- ====================== BLOG POSTS ====================== -->
+<section class="blog-section">
+  <div class="blog-inner">
+
+    <!-- Featured post -->
+    <div class="blog-featured fu">
+      <div class="blog-featured-img">
+        <img src="https://placehold.co/800x600/3D2040/E8D5B0?text=Featured" alt="Why You Keep Attracting the Same Kind of Love" />
+      </div>
+      <div class="blog-featured-text">
+        <div class="blog-meta">
+          <span class="blog-cat">Self-Worth</span>
+          <span class="blog-date">February 18, 2026</span>
+        </div>
+        <h2 class="blog-featured-title">
+          Why You Keep Attracting<br><em>the Same Kind of Love</em>
+        </h2>
+        <span class="gold-line"></span>
+        <p class="blog-featured-excerpt">
+          It's not bad luck. It's not that you're too much or not enough. The patterns you keep finding yourself in have roots — and they run deeper than the person in front of you. Here's the honest truth about what's really happening, and what shifts when you finally see it.
+        </p>
+        <a href="#" class="blog-read-more">Read the full piece →</a>
+      </div>
+    </div>
+
+    <!-- Post grid -->
+    <div class="blog-grid">
+
+      <article class="blog-card fu" data-d="1">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/4A2545/E8D5B0?text=Post+2" alt="What Islam Actually Says About Your Loneliness" />
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-cat">Faith &amp; Love</span>
+            <span class="blog-date">Feb 10, 2026</span>
+          </div>
+          <h3 class="blog-card-title">What Islam Actually Says<br><em>About Your Loneliness</em></h3>
+          <p class="blog-card-excerpt">The ache is real. And your deen has always had something to say about it — not a platitude, but a framework that actually holds you.</p>
+          <div class="blog-card-footer">
+            <a href="#" class="blog-read-more">Read more →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card fu" data-d="2">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/6B3A65/E8D5B0?text=Post+3" alt="The Permission You Never Got" />
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-cat">Healing</span>
+            <span class="blog-date">Jan 28, 2026</span>
+          </div>
+          <h3 class="blog-card-title">The Permission<br><em>You Never Got</em></h3>
+          <p class="blog-card-excerpt">Nobody sat you down and said: your needs matter. Your grief is valid. You are allowed to want more. This is that conversation.</p>
+          <div class="blog-card-footer">
+            <a href="#" class="blog-read-more">Read more →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card fu" data-d="3">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/3D2040/C9A96E?text=Post+4" alt="On Not Waiting to Start Your Life" />
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-cat">Becoming</span>
+            <span class="blog-date">Jan 15, 2026</span>
+          </div>
+          <h3 class="blog-card-title">On Not Waiting<br><em>to Start Your Life</em></h3>
+          <p class="blog-card-excerpt">The moment you're waiting for is not marriage. It's not the right time or the right person. It's right now, exactly as you are.</p>
+          <div class="blog-card-footer">
+            <a href="#" class="blog-read-more">Read more →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card fu" data-d="1">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/2C1A24/C4A0B5?text=Post+5" alt="The Difference Between Patience and Settling" />
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-cat">Islamic Guidance</span>
+            <span class="blog-date">Jan 4, 2026</span>
+          </div>
+          <h3 class="blog-card-title">The Difference Between<br><em>Patience and Settling</em></h3>
+          <p class="blog-card-excerpt">Sabr is not the same as silence. Tawakkul is not the same as accepting less than you deserve. Here's how to tell them apart.</p>
+          <div class="blog-card-footer">
+            <a href="#" class="blog-read-more">Read more →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card fu" data-d="2">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/4A2545/F2E0D8?text=Post+6" alt="When Your Dua Feels Like It's Going Unanswered" />
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-cat">Faith</span>
+            <span class="blog-date">Dec 20, 2025</span>
+          </div>
+          <h3 class="blog-card-title">When Your Dua Feels Like<br><em>It's Going Unanswered</em></h3>
+          <p class="blog-card-excerpt">You've been making the same dua for years. You're starting to wonder if something is wrong with you. It isn't. Let's talk about what's actually happening.</p>
+          <div class="blog-card-footer">
+            <a href="#" class="blog-read-more">Read more →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card fu" data-d="3">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/600x400/3D2040/E8D5B0?text=Post+7" alt="Returning to Yourself After You Lost Her" />
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-cat">Self-Worth</span>
+            <span class="blog-date">Dec 8, 2025</span>
+          </div>
+          <h3 class="blog-card-title">Returning to Yourself<br><em>After You Lost Her</em></h3>
+          <p class="blog-card-excerpt">There's a version of you that existed before the relationship, before the heartbreak, before you learned to make yourself smaller. She's still there.</p>
+          <div class="blog-card-footer">
+            <a href="#" class="blog-read-more">Read more →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Inline newsletter strip -->
+    <div class="blog-nl fu">
+      <div class="blog-nl-inner">
+        <span class="eyebrow" style="color: var(--gold);">Stay connected</span>
+        <h2 class="blog-nl-h">New pieces, straight<br>to your inbox.</h2>
+        <p class="blog-nl-sub">No fluff. No schedule. Just honest writing when it's ready.</p>
+        <form class="nl-form" id="nlForm">
+          <input type="email" class="nl-input" placeholder="Your email address" required aria-label="Email address" />
+          <button type="submit" class="nl-submit">Join</button>
+        </form>
+        <p class="nl-note">No spam. Unsubscribe anytime.</p>
+        <p class="nl-success" id="nlSuccess">Bismillah — welcome to HerQalb. ✦</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logos/herqalb-logo-04-gold-on-charcoal.png" alt="HerQalb" class="footer-logo" />
+        <span class="footer-sub">Ebooks &amp; Community for Muslim Women</span>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="footer-col-head">Navigate</p>
+          <a href="index.html#empathy">The Book</a>
+          <a href="index.html#whats-inside">What's Inside</a>
+          <a href="index.html#ebook">Get the Ebook</a>
+          <a href="index.html#author">Meet Nour</a>
+          <a href="blog.html">Blog</a>
+          <a href="index.html#newsletter">Join Us</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Legal</p>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Refund Policy</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-head">Follow</p>
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© <span id="yr"></span> HerQalb. All rights reserved.</p>
+      <p class="footer-quote">"Your worth was decided before you were born."</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Mobile nav
+  const burger = document.getElementById('navBurger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Fade-up on load (hero)
+  setTimeout(() => {
+    document.querySelectorAll('.blog-hero .fu').forEach(el => el.classList.add('vis'));
+  }, 80);
+
+  // Fade-up: rest via IntersectionObserver
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.10, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('.fu:not(.blog-hero .fu)').forEach(el => io.observe(el));
+
+  // Newsletter form
+  document.getElementById('nlForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.querySelectorAll('.nl-note').forEach(el => el.style.display = 'none');
+    const s = document.getElementById('nlSuccess');
+    s.style.display = 'block';
+  });
+</script>
+</body>
+</html>

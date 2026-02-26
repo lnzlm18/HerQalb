@@ -898,7 +898,7 @@
     }
     .pillars-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       background: rgba(201,169,110,0.12);
       border: 1px solid rgba(201,169,110,0.12);
@@ -968,7 +968,7 @@
       .testi-grid { grid-template-columns: repeat(2, 1fr); }
       .author-grid { grid-template-columns: 1fr; max-width: 520px; }
       .author-photo { aspect-ratio: 4/3; }
-      .pillars-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 640px) {
       .nav-links { display: none; }
@@ -983,6 +983,7 @@
         z-index: 99;
       }
       .hero-ctas { flex-direction: column; align-items: center; }
+      .pillars-grid { grid-template-columns: 1fr; }
       .chapters-grid { grid-template-columns: 1fr; }
       .for-you-list { grid-template-columns: 1fr; }
       .testi-grid { grid-template-columns: 1fr; }
@@ -1081,6 +1082,13 @@
         <p class="pillar-title">A Growing<br>Library</p>
         <p class="pillar-desc">In-depth articles on codependency, discipline, self-worth through Islam, and the questions Muslim women in their 20s are actually asking out loud.</p>
         <a href="blog.html" class="pillar-link">Start reading →</a>
+      </div>
+      <div class="pillar-card fu" data-d="4" style="border-left: 1px solid rgba(201,169,110,0.22);">
+        <span class="pillar-icon" aria-hidden="true">◎</span>
+        <span class="pillar-label">The Sisterhood</span>
+        <p class="pillar-title">You're not<br>doing this alone.</p>
+        <p class="pillar-desc">A WhatsApp community for Muslim women on the journey — honest conversations, shared growth, and reminders that the path home to yourself is one you don't have to walk in silence.</p>
+        <a href="https://chat.whatsapp.com/HDpR0kWwhvhD1bmd7skesY?mode=gi_t" target="_blank" rel="noopener" class="pillar-link">Join free →</a>
       </div>
     </div>
   </div>
@@ -1373,7 +1381,8 @@
           <a href="#ebook">Get the Ebook</a>
           <a href="#author">Meet Nour</a>
           <a href="blog.html">Blog</a>
-          <a href="#newsletter">Join Us</a>
+          <a href="#newsletter">Newsletter</a>
+          <a href="https://chat.whatsapp.com/HDpR0kWwhvhD1bmd7skesY?mode=gi_t" target="_blank" rel="noopener">The Sisterhood</a>
         </div>
         <div class="footer-col">
           <p class="footer-col-head">Legal</p>

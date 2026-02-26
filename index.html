@@ -859,6 +859,103 @@
     }
 
     /* ================================================
+       PILLARS / BRAND OVERVIEW
+    ================================================ */
+    .pillars {
+      padding: clamp(72px,9vw,120px) clamp(20px,5vw,80px);
+      background: var(--plum-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .pillars::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 80% at 15% 50%, rgba(107,58,101,0.38) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 55% at 85% 15%, rgba(61,32,64,0.55) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 40% at 55% 90%, rgba(201,169,110,0.05) 0%, transparent 55%);
+    }
+    .pillars-inner {
+      max-width: 1100px; margin: 0 auto;
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; gap: clamp(44px,5.5vw,68px);
+    }
+    .pillars-header {
+      display: flex; flex-direction: column; gap: 12px;
+      max-width: 640px;
+    }
+    .pillars-headline {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(32px, 4.5vw, 54px);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--gold-light);
+    }
+    .pillars-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(201,169,110,0.12);
+      border: 1px solid rgba(201,169,110,0.12);
+    }
+    .pillar-card {
+      background: rgba(45,18,48,0.72);
+      padding: clamp(32px,4vw,52px) clamp(24px,3vw,40px);
+      display: flex; flex-direction: column; gap: 14px;
+      transition: background-color 0.32s;
+    }
+    .pillar-card:hover { background: rgba(74,37,69,0.68); }
+    .pillar-icon {
+      font-size: 18px;
+      color: var(--gold);
+      opacity: 0.65;
+      line-height: 1;
+    }
+    .pillar-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.52;
+      font-weight: 500;
+    }
+    .pillar-title {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(22px, 2.6vw, 32px);
+      line-height: 1.18;
+      color: var(--gold-light);
+    }
+    .pillar-desc {
+      font-size: clamp(13.5px, 1.5vw, 15px);
+      line-height: 1.76;
+      color: rgba(232,213,176,0.48);
+      flex: 1;
+    }
+    .pillar-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-body);
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid rgba(201,169,110,0.28);
+      padding-bottom: 3px;
+      width: fit-content;
+      margin-top: 6px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .pillar-link:hover { color: var(--gold-light); border-color: var(--gold-light); }
+    .pillar-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+    /* ================================================
        RESPONSIVE
     ================================================ */
     @media (max-width: 960px) {
@@ -871,6 +968,7 @@
       .testi-grid { grid-template-columns: repeat(2, 1fr); }
       .author-grid { grid-template-columns: 1fr; max-width: 520px; }
       .author-photo { aspect-ratio: 4/3; }
+      .pillars-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .nav-links { display: none; }
@@ -911,6 +1009,7 @@
       <li><a href="#whats-inside">What's Inside</a></li>
       <li><a href="#author">Meet Nour</a></li>
       <li><a href="blog.html">Blog</a></li>
+      <li><a href="#newsletter">Letters</a></li>
       <li><a href="#ebook" class="nav-cta">Get the Ebook — $17</a></li>
     </ul>
     <button class="nav-burger" id="navBurger" aria-expanded="false" aria-label="Toggle menu">
@@ -932,22 +1031,58 @@
   </svg>
 
   <div class="hero-body-wrap">
-    <span class="eyebrow hero-eyebrow fu" data-d="1">The ebook for Muslim women in their 20s</span>
+    <span class="eyebrow hero-eyebrow fu" data-d="1">For the Muslim woman who is becoming</span>
     <h1 class="hero-h1 fu" data-d="2">You don't need to find<br>the right person.</h1>
     <h1 class="hero-h1 italic fu" data-d="3">You need to become her.</h1>
     <p class="hero-sub fu" data-d="4">
-      Six chapters. An honest, Islamic framework for healing, self-worth, and the love that actually stays.
+      Faith-rooted guidance, honest writing, and the ebook that changes how you see yourself. HerQalb is where Muslim women in their 20s come home to themselves.
     </p>
     <div class="hero-ctas fu" data-d="5">
-      <a href="#ebook" class="btn-gold" style="padding: 16px 44px; font-size: 14px;">Yes, I want this — $17</a>
-      <a href="#empathy" class="btn-ghost">Read more ↓</a>
+      <a href="#ebook" class="btn-gold" style="padding: 16px 44px; font-size: 14px;">Get the ebook — $17</a>
+      <a href="#newsletter" class="btn-ghost">Get free letters →</a>
     </div>
-    <p class="hero-trust fu" data-d="6">Instant digital download &nbsp;·&nbsp; 30-day money-back guarantee</p>
+    <p class="hero-trust fu" data-d="6">Instant PDF download &nbsp;·&nbsp; 30-day guarantee &nbsp;·&nbsp; Free to unsubscribe</p>
   </div>
 
   <div class="scroll-cue" aria-hidden="true">
     <div class="scroll-cue-line"></div>
     <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ====================== PILLARS / BRAND OVERVIEW ====================== -->
+<section class="pillars">
+  <div class="pillars-inner">
+    <div class="pillars-header">
+      <span class="eyebrow fu">What HerQalb is</span>
+      <h2 class="pillars-headline fu" data-d="1">
+        More than an ebook.<br><em>A place to come back to.</em>
+      </h2>
+      <span class="gold-line fu" data-d="2"></span>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card fu" data-d="1">
+        <span class="pillar-icon" aria-hidden="true">✦</span>
+        <span class="pillar-label">The Ebook</span>
+        <p class="pillar-title">Who Moved<br>My Heart?</p>
+        <p class="pillar-desc">Six chapters on self-worth, healing, patterns, and becoming whole — grounded in Islamic principles. The guide that Muslim women in their 20s keep returning to.</p>
+        <a href="#ebook" class="pillar-link">Get it for $17 →</a>
+      </div>
+      <div class="pillar-card fu" data-d="2">
+        <span class="pillar-icon" aria-hidden="true">✉</span>
+        <span class="pillar-label">The Newsletter</span>
+        <p class="pillar-title">Real Letters.<br>No Performance.</p>
+        <p class="pillar-desc">Honest, reflective writing on faith, self-worth, love, and becoming — delivered to your inbox. The kind of letter you forward to your best friend.</p>
+        <a href="#newsletter" class="pillar-link">Subscribe free →</a>
+      </div>
+      <div class="pillar-card fu" data-d="3">
+        <span class="pillar-icon" aria-hidden="true">◈</span>
+        <span class="pillar-label">The Blog</span>
+        <p class="pillar-title">A Growing<br>Library</p>
+        <p class="pillar-desc">In-depth articles on codependency, discipline, self-worth through Islam, and the questions Muslim women in their 20s are actually asking out loud.</p>
+        <a href="blog.html" class="pillar-link">Start reading →</a>
+      </div>
+    </div>
   </div>
 </section>
 

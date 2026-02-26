@@ -400,13 +400,8 @@
     }
 
     /* ================================================
-       CHAPTERS / WHAT'S INSIDE
+       SECTION HEADER (shared)
     ================================================ */
-    .chapters {
-      padding: clamp(80px,10vw,140px) clamp(20px,5vw,80px);
-      background: var(--ivory);
-    }
-    .chapters-inner { max-width: 1100px; margin: 0 auto; }
     .section-header {
       display: flex; flex-direction: column; gap: 16px;
       margin-bottom: clamp(44px,5vw,68px);
@@ -417,52 +412,6 @@
       line-height: 1.12; letter-spacing: -0.01em;
       color: var(--plum-dark);
     }
-    .chapters-intro {
-      font-size: clamp(15px,1.8vw,17px);
-      line-height: 1.75;
-      color: var(--plum-dark);
-      opacity: 0.65;
-      max-width: 560px;
-    }
-    .chapters-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
-    .chapter-card {
-      background: rgba(242,224,216,0.38);
-      padding: clamp(28px,3.5vw,44px) clamp(22px,2.8vw,36px);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      border-top: 1px solid rgba(74,37,69,0.07);
-      transition: background-color 0.3s, transform 0.3s var(--ease-spring);
-    }
-    .chapter-card:hover { background: rgba(242,224,216,0.8); }
-    .chapter-num {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: clamp(44px, 5vw, 68px);
-      line-height: 0.85;
-      color: var(--gold);
-      opacity: 0.45;
-      font-weight: 300;
-      user-select: none;
-    }
-    .chapter-title {
-      font-family: var(--font-display);
-      font-weight: 500;
-      font-size: clamp(16px, 1.8vw, 21px);
-      line-height: 1.28;
-      color: var(--plum-dark);
-    }
-    .chapter-desc {
-      font-size: 13.5px;
-      line-height: 1.72;
-      color: var(--plum-dark);
-      opacity: 0.58;
-    }
-
     /* ================================================
        EBOOK SECTION (DARK PLUM)
     ================================================ */
@@ -975,8 +924,7 @@
     @media (max-width: 860px) {
       .ebook-grid { grid-template-columns: 1fr; }
       .book-wrap { order: -1; }
-      .chapters-grid { grid-template-columns: repeat(2, 1fr); }
-      .testi-grid { grid-template-columns: repeat(2, 1fr); }
+.testi-grid { grid-template-columns: repeat(2, 1fr); }
       .author-grid { grid-template-columns: 1fr; max-width: 520px; }
       .author-photo { aspect-ratio: 4/3; }
       .pillars-grid { grid-template-columns: repeat(2, 1fr); }
@@ -995,8 +943,7 @@
       }
       .hero-ctas { flex-direction: column; align-items: center; }
       .pillars-grid { grid-template-columns: 1fr; }
-      .chapters-grid { grid-template-columns: 1fr; }
-      .for-you-list { grid-template-columns: 1fr; }
+.for-you-list { grid-template-columns: 1fr; }
       .testi-grid { grid-template-columns: 1fr; }
       .nl-form { flex-direction: column; }
       .nl-input { border-radius: 2px 2px 0 0; border-right: 1.5px solid transparent; border-bottom: none; }
@@ -1019,7 +966,7 @@
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#empathy">Home</a></li>
-      <li><a href="#whats-inside">What's Inside</a></li>
+      <li><a href="ebook.html">The Book</a></li>
       <li><a href="#author">About</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="#newsletter">Letters</a></li>
@@ -1051,7 +998,7 @@
       Faith-rooted guidance, honest writing, and the ebook that changes how you see yourself. HerQalb is where Muslim women in their 20s come home to themselves.
     </p>
     <div class="hero-ctas fu" data-d="5">
-      <a href="#ebook" class="btn-gold" style="padding: 16px 44px; font-size: 14px;">Get the ebook — $17</a>
+      <a href="ebook.html" class="btn-gold" style="padding: 16px 44px; font-size: 14px;">Get the ebook — $17</a>
       <a href="#newsletter" class="btn-ghost">Get free letters →</a>
     </div>
     <p class="hero-trust fu" data-d="6">Instant PDF download &nbsp;·&nbsp; 30-day guarantee &nbsp;·&nbsp; Free to unsubscribe</p>
@@ -1079,7 +1026,7 @@
         <span class="pillar-label">The Ebook</span>
         <p class="pillar-title">Who Moved<br>My Heart?</p>
         <p class="pillar-desc">Six chapters on self-worth, healing, patterns, and becoming whole — grounded in Islamic principles. The guide that Muslim women in their 20s keep returning to.</p>
-        <a href="#ebook" class="pillar-link">Get it for $17 →</a>
+        <a href="ebook.html" class="pillar-link">Get it for $17 →</a>
       </div>
       <div class="pillar-card fu" data-d="2">
         <span class="pillar-icon" aria-hidden="true">✉</span>
@@ -1219,54 +1166,6 @@
   </div>
 </section>
 
-<!-- ====================== CHAPTERS ====================== -->
-<section class="chapters" id="whats-inside">
-  <div class="chapters-inner">
-    <div class="section-header">
-      <span class="eyebrow fu">What's inside</span>
-      <h2 class="section-h2 fu" data-d="1">
-        Six chapters.<br>A step-by-step journey home.
-      </h2>
-      <span class="gold-line fu" data-d="2"></span>
-      <p class="chapters-intro fu" data-d="3">
-        This isn't a book about finding love. It's about becoming whole. Grounded in Islamic principles — written for where you actually are right now.
-      </p>
-    </div>
-    <div class="chapters-grid">
-      <div class="chapter-card fu" data-d="1">
-        <span class="chapter-num" aria-hidden="true">01</span>
-        <h3 class="chapter-title">Your Worth Was Never in Question</h3>
-        <p class="chapter-desc">A clear-eyed look at what Allah actually says about who you are — not the conditional version you may have been taught. Before we go anywhere, we start here.</p>
-      </div>
-      <div class="chapter-card fu" data-d="2">
-        <span class="chapter-num" aria-hidden="true">02</span>
-        <h3 class="chapter-title">The Patterns Keeping Love Away</h3>
-        <p class="chapter-desc">Why you keep ending up in the same dynamics — and the Islamic framework for understanding, then finally breaking, the cycle.</p>
-      </div>
-      <div class="chapter-card fu" data-d="3">
-        <span class="chapter-num" aria-hidden="true">03</span>
-        <h3 class="chapter-title">Reconciling with Your Deen</h3>
-        <p class="chapter-desc">The honest conversation about the parts of Islam around love and marriage that left you confused or hurt. The one nobody ever sat with you through.</p>
-      </div>
-      <div class="chapter-card fu" data-d="4">
-        <span class="chapter-num" aria-hidden="true">04</span>
-        <h3 class="chapter-title">Building a Whole Self</h3>
-        <p class="chapter-desc">You don't enter a relationship to become complete. You arrive complete. Here's the practical roadmap for getting there before you meet anyone.</p>
-      </div>
-      <div class="chapter-card fu" data-d="5">
-        <span class="chapter-num" aria-hidden="true">05</span>
-        <h3 class="chapter-title">Attracting Aligned Love</h3>
-        <p class="chapter-desc">When you know your worth, the wrong things stop looking interesting. Grounded guidance on what to look for — and what to walk away from — without guilt.</p>
-      </div>
-      <div class="chapter-card fu" data-d="6">
-        <span class="chapter-num" aria-hidden="true">06</span>
-        <h3 class="chapter-title">Journal Prompts & Duas</h3>
-        <p class="chapter-desc">Every chapter closes with reflection prompts and duas. This isn't something you read once. It's something you return to.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ====================== EBOOK PURCHASE ====================== -->
 <section class="ebook-section" id="ebook">
   <div class="ebook-grid">
@@ -1388,9 +1287,8 @@
       <div class="footer-cols">
         <div class="footer-col">
           <p class="footer-col-head">Navigate</p>
-          <a href="#empathy">The Book</a>
-          <a href="#whats-inside">What's Inside</a>
-          <a href="#ebook">Get the Ebook</a>
+          <a href="ebook.html">The Book</a>
+          <a href="ebook.html">Get the Ebook</a>
           <a href="#author">Meet Nour</a>
           <a href="blog.html">Blog</a>
           <a href="#newsletter">Newsletter</a>
